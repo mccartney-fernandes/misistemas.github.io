@@ -1,6 +1,7 @@
 .text-brand{
 	font-family: 'Black Ops One';
 	font-size: 42px;
+	color: #fff !important;
 }
 
 .text-content{
@@ -14,5 +15,17 @@
 
 .text-head{
 	
+}
+
+.link-color-1{
+	font-family: 'Baumans';
+	font-weight: bold;
+	color: #fff !important;
+}
+
+.link-color-2{
+	font-family: 'Baumans';
+	font-weight: bold;
+	color: rgb(229, 116, 57) !important;
 }
 
