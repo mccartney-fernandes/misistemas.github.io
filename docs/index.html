@@ -22,14 +22,13 @@
 			  </button>
 
 			  <div  id="navbarSupportedContent">
-			    <ul class="navbar-nav mr-auto">
-			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" id="link-about" v-on:click.stop.prevent="menuInterno" class="nav-link" href="#about" >About</a></li>
-			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" class="nav-link" v-on:click.stop.prevent="menuInterno" href="#repository" >Repositorio</a></li>		     
-			      <li class="nav-item active"><a style="color:#fff;font-size: 26px;" class="nav-link" :href="blogs.blog" target="_blank">Blog</a></li>
-			    </ul>
+			    
 			    <form class="form-inline my-2 my-lg-0">
-			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			      <ul class="navbar-nav mr-auto">
+			        <li class="nav-item"><a style="color:#fff;font-size: 26px;" id="link-about" v-on:click.stop.prevent="menuInterno" class="nav-link" href="#about" >About</a></li>
+			        <li class="nav-item"><a style="color:#fff;font-size: 26px;" class="nav-link" v-on:click.stop.prevent="menuInterno" href="#repository" >Repositorio</a></li>		     
+			        <li class="nav-item active"><a style="color:#fff;font-size: 26px;" class="nav-link" :href="blogs.blog" target="_blank">Blog</a></li>
+			      </ul>
 			    </form>
 			  </div>			  
 			</nav>
