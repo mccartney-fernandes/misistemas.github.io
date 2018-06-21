@@ -85,7 +85,7 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
-				textoHead: 'Consulta a API GitHub',
+				textoHead: 'Repo GitHub',
 				gitRepos: null,
 				blogs: null,
 			},
@@ -132,7 +132,7 @@
 					$("#menu").css('background-color', 'rgba(30,144,255)');
 
 				} else {
-					$('#text-header').hide();
+					$('#text-header').hide('slow');
 					$('#link-about').show('slow');
 				   	$("#menu").css('background-color', 'rgba(30,144,255,0.6)');
 				}
