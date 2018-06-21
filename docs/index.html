@@ -38,7 +38,7 @@
 		<div class="container-fluid">	
 			<section id="about" style="margin-bottom: 5%;">
 				<div class="row justify-content-md-center" style="background-color: #ccc; padding: 20px;">
-					<div class="card col-sm-12 col-" style="width: 18rem; margin-left: 2%; margin-top: 2%;"  v-for="gitRepo in gitRepos">
+					<div class="card" style="width: 18rem; margin-left: 2%; margin-top: 2%;"  v-for="gitRepo in gitRepos">
 					  <img class="card-img-top" v-bind:src="gitRepo.owner.avatar_url" alt="Card image cap">
 					  <div class="card-body">
 					    <h5 class="card-title">{{gitRepo.name | toUpperCase}}</h5>
