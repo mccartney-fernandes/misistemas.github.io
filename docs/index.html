@@ -15,7 +15,7 @@
 			    <img src="https://png.icons8.com/metro/1600/github.png" width="50" height="50" alt="">		    
 			  </a>			  
 			  <span class="navbar-text">
-				   <h6 id="text-header" style="color:#fff;" >{{ textoHead | toUpperCase }}</h6>
+				   <h5 id="text-header" style="color:#fff;" >{{ textoHead | toUpperCase }}</h5>
 			  </span>
 			  <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,8 @@
 
 			  <div  id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
-			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" id="link-about" class="nav-link" href="#about" >About</a></li>
-			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" class="nav-link" href="#repository" >Repositorio</a></li>		     
+			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" id="link-about" v-on:click.stop.prevent="menuInterno" class="nav-link" href="#about" >About</a></li>
+			      <li class="nav-item"><a style="color:#fff;font-size: 26px;" class="nav-link" v-on:click.stop.prevent="menuInterno" href="#repository" >Repositorio</a></li>		     
 			      <li class="nav-item active"><a style="color:#fff;font-size: 26px;" class="nav-link" :href="blogs.blog" target="_blank">Blog</a></li>
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
@@ -91,7 +91,11 @@
 			},
 			created: function(){
 				this.consultaRepoGitHub();
-				this.consultaRepoGitHubBlog();
+				this.consultaRepoGitHubBlog();	
+				$('#text-header').show();
+				$('#link-about').hide();
+				$('#navbarSupportedContent').addClass('collapse navbar-collapse');
+				$("#menu").css('background-color', 'rgba(30,144,255)');			
 			},
 			methods:{
 				consultaRepoGitHub: function(){
@@ -110,6 +114,21 @@
 					  })
 					  
 				},
+				menuInterno: function(){
+					$('.nav-item a[href^="#"]').click(function(e){
+				
+					  
+					  var id = $(this).attr('href');
+					  var targetOffset = $(id).offset().top;
+					    
+					  $('html, body').animate({ 
+					    scrollTop: targetOffset - 140
+					  }, 500);
+
+					  $('#navbarSupportedContent').removeClass('show');
+					  
+					});
+				},
 			},
 			filters: {
 				toUpperCase: function(data){
@@ -121,36 +140,22 @@
 		})
 	</script>
 
-	<script type="text/javascript">
-		jQuery(function () {
-			$('#navbarSupportedContent').addClass('collapse navbar-collapse')
-			$("#menu").css('background-color', 'rgba(30,144,255)');
+	<script>
+		jQuery(function(){			
 			jQuery(window).scroll(function () {
 				if (jQuery(this).scrollTop() < 100) {
+
 					$('#text-header').show('slow');
 					$('#link-about').hide('slow');
 					$("#menu").css('background-color', 'rgba(30,144,255)');
 
 				} else {
-					$('#text-header').hide('slow');
+					$('#text-header').hide();
 					$('#link-about').show('slow');
 				   	$("#menu").css('background-color', 'rgba(30,144,255,0.6)');
 				}
 			});
-
-			$('.nav-item a[href^="#"]').on('click', function(e) {
-				
-			  e.preventDefault();
-			  var id = $(this).attr('href');
-			  var targetOffset = $(id).offset().top;
-			    
-			  $('html, body').animate({ 
-			    scrollTop: targetOffset - 140
-			  }, 500);
-
-			  $('#navbarSupportedContent').removeClass('show');
-			  
-			});
+			
 
 		});
 
@@ -158,4 +163,3 @@
 
 </body>
 </html>
-
