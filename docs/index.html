@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<title>Odds JS</title>
+</head>
+<body>
+	<div id="app">
+	<div class="container" style="background:rgba(144, 146, 148, 0.1);">
+		<button @click.stop.prevent="cotacaoApostaFutBand()" >FutBand</button>
+		<div class="row justify-content-md-center">
+			<div class="card" style="width: 18rem;margin-left: 20px; margin-bottom: 20px; margin-top: 20px; background: #45b4b98c;" v-for="jogo in jogos">
+
+			  <h4 class="card-title text-center">Pais: {{jogo.JOGO_LOCAL}}</h4>
+			  <div class="card-body" style="background: #e25b5bd1;
+										    color: #fff;
+										    font-family: sans-serif;">
+			    <h6 class="card-title text-center">Campeonato: {{jogo.CAMPEONATO_DESC}}</h6>
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item">Times: {{jogo.CASA}} X {{jogo.FORA}}</li>
+			    <li class="list-group-item">Data: {{jogo.DATA | dataFilter}}</li>
+			    <li class="list-group-item">Hora: {{jogo.HORA | horaFilter}}</li>
+			    <li class="list-group-item"><button class="btn btn btn-outline-primary btn-block" @click="contacaoApostaMcEsportes(jogo.JOGO_ID,jogo.CASA,jogo.FORA,jogo.CAMPEONATO_DESC)" data-toggle="modal" data-target="#exampleModal2">Cotação Geral</button>
+			    <button class="btn btn btn-outline-danger btn-block" @click="contacaoApostaMcEsportes(jogo.JOGO_ID,jogo.CASA,jogo.FORA,jogo.CAMPEONATO_DESC)" data-toggle="modal" data-target="#exampleModal">Cotação Casa</button></li>
+			  </ul>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Campeonato: {{campeonato}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<h5 class="modal-body">Cotações: Casa: {{timeCasa}} X Fora: {{timeFora}}</h5>
+        <table class="table table-striped">
+        	<tr>
+        		<th>Aposta Descrição</th>
+        		<th>Taxa</th>
+        	</tr>
+        	<tr v-for="tipoAposta in tipoApostas">
+        		<template v-if="tipoAposta.TIPO_APOSTA_DESC === 'Casa'">
+	        		<td>{{tipoAposta.TIPO_APOSTA_DESC}}</td>
+	        		<td>{{tipoAposta.TAXA}}</td>
+        		</template>
+        	</tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Campeonato: {{campeonato}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<h5 class="modal-body">Cotações: Casa: {{timeCasa}} X Fora: {{timeFora}}</h5>
+        <table class="table table-striped">
+        	<tr>
+        		<th>Aposta Descrição</th>
+        		<th>Taxa</th>
+        	</tr>
+        	<tr v-for="tipoAposta in tipoApostas">
+
+	        		<td>{{tipoAposta.TIPO_APOSTA_DESC}}</td>
+	        		<td>{{tipoAposta.TAXA}}</td>
+
+        	</tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script>
+
+var app = new Vue({
+	el: "#app",
+	data () {
+    return {
+      jogos: null,
+      cotacoes: [],
+      tipoApostas: null,
+      campeonato: null,
+      timeCasa:null,
+      timeFora:null
+
+
+    }
+  },
+  mounted () {
+  	var self = this;
+  	axios.get('http://montecarlos.no-ip.info:2610/gettable/SP_BET_JOGOS/1')
+	  .then(function (response) {
+	   	self.jogos = response.data;
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+	// axios.get('http://montecarlos.no-ip.info:2610//gettable/SP_BET_GET_APOSTAS/1')
+	//   .then(function (response) {
+	//    	self.tipoApostas = response.data;
+	//   })
+	//   .catch(function (error) {
+	//     console.log(error);
+	//   });
+   },
+   filters: {
+   	 dataFilter (data){
+   	 	return data.split('-').reverse().join('/');
+   	 },
+   	 horaFilter (data){
+   	 	var hora = data.split(':');
+   	 	return hora[0]+':'+hora[1];
+   	 }
+   },
+   methods:{
+
+    contacaoApostaMcEsportes: function(valor,casa,fora,campeonato){
+      this.timeCasa = casa;
+      this.timeFora = fora;
+      this.campeonato = campeonato;
+      var self = this;
+      console.log(casa+' '+fora);
+      axios.get('http://montecarlos.no-ip.info:2610/gettable/SP_GET_COTACAO_JOGO_BY_ID/'+valor)
+		  .then(function (response) {
+		   	self.tipoApostas = response.data;
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+    },
+
+    cotacaoApostaFutBand: function(){
+
+	  	axios.get('http://www.futband.online/web/principal/prematch')
+		  .then(function (response) {
+		   	console.log(response.data);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+	},
+
+  },
+
+})
+
+</script>
+</body>
+</html>
