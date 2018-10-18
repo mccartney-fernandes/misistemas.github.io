@@ -33,11 +33,15 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="home-cliente.html"><img alt="Brand" src="img/sunologo.png" width="50"></a>
+        <a class="nav-link text-nav js-scroll-trigger" data-toggle="modal" data-target="#modalCarrinho" style="cursor:pointer;" ><i class="fas fa-shopping-cart fa-2x mb-3"></i><span class="badge badge-light">4</span></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto" >
+            <li class="nav-item">
+              <a class="nav-link text-nav js-scroll-trigger" href="home-cliente.html">Fazer Pedidos</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-nav js-scroll-trigger" data-toggle="modal" data-target="#modalPontos" style="cursor:pointer;">Meus Pontos</a>
             </li>
@@ -46,9 +50,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link text-nav js-scroll-trigger" href="#cardapio">Acompanhar Pedido</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-nav js-scroll-trigger"><i class="fas fa-shopping-cart fa-2x mb-3"></i><span class="badge badge-light">4</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-nav js-scroll-trigger" href="index.html">Sair</a>
@@ -112,8 +113,9 @@
         </div>
       </div>
 
+
       <hr>
-      
+
       <div class="bg-dark text-white" style="padding:20px;">
         <div class="text-center">
           <h6>Todos os direitos reservados &copy; M.I Sistemas 2018 </h6>
@@ -140,6 +142,75 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Carrinho -->
+    <div class="modal fade" id="modalCarrinho" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-shopping-cart fa-2x mb-3"></i></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="card text-center card-top">
+              <div class="card-header">
+                Pedido numero #154488
+              </div>
+              <div class="card-body">
+
+                <p class="card-text">
+                  <table class="table ">
+                    <tr>
+                      <th>#</th>
+                      <th>Item</th>
+                      <th>Preço</th>
+                    </tr>
+                    <tr>
+                      <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/1.jpg" width="70"></td>
+                      <td>Hot Holl</td>
+                      <td>R$ 10,00</td>
+                    </tr>
+                    <tr>
+                      <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/2.jpg" width="70"></td>
+                      <td>Barca</td>
+                      <td>R$ 50,00</td>
+                    </tr>
+                    <tr>
+                      <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/3.jpg" width="70"></td>
+                      <td>Peça</td>
+                      <td>R$ 50,00</td>
+                    </tr>
+                  </table>
+                </p>
+                <div class="col-6 col-sm-12">
+                  <table class="float-right">
+                    <tr>
+                      <th>Frete</th>
+                      <td>R$ 9,00</td>
+                    </tr>
+                    <tr>
+                      <th>Preco</th>
+                      <td>R$ 119,00</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer text-muted">
+                Itens adicionados no Carrinho
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalizar Pedido</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
           </div>
         </div>
       </div>
