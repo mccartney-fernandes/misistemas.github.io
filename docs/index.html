@@ -1,183 +1,404 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<meta charset="utf-8">
+
+  <head>
+
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<title>Odds JS</title>
-</head>
-<body>
-	<div id="app">
-	<div class="container" style="background:rgba(144, 146, 148, 0.1);">
-		<button @click.stop.prevent="cotacaoApostaFutBand()" >FutBand</button>
-		<div class="row justify-content-md-center">
-			<div class="card" style="width: 18rem;margin-left: 20px; margin-bottom: 20px; margin-top: 20px; background: #45b4b98c;" v-for="jogo in jogos">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-			  <h4 class="card-title text-center">Pais: {{jogo.JOGO_LOCAL}}</h4>
-			  <div class="card-body" style="background: #e25b5bd1;
-										    color: #fff;
-										    font-family: sans-serif;">
-			    <h6 class="card-title text-center">Campeonato: {{jogo.CAMPEONATO_DESC}}</h6>
-			  </div>
-			  <ul class="list-group list-group-flush">
-			    <li class="list-group-item">Times: {{jogo.CASA}} X {{jogo.FORA}}</li>
-			    <li class="list-group-item">Data: {{jogo.DATA | dataFilter}}</li>
-			    <li class="list-group-item">Hora: {{jogo.HORA | horaFilter}}</li>
-			    <li class="list-group-item"><button class="btn btn btn-outline-primary btn-block" @click="contacaoApostaMcEsportes(jogo.JOGO_ID,jogo.CASA,jogo.FORA,jogo.CAMPEONATO_DESC)" data-toggle="modal" data-target="#exampleModal2">Cotação Geral</button>
-			    <button class="btn btn btn-outline-danger btn-block" @click="contacaoApostaMcEsportes(jogo.JOGO_ID,jogo.CASA,jogo.FORA,jogo.CAMPEONATO_DESC)" data-toggle="modal" data-target="#exampleModal">Cotação Casa</button></li>
-			  </ul>
-			</div>
-		</div>
+    <title>Sunomoki Sushi Rápido</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	</div>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Campeonato: {{campeonato}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img alt="Brand" src="img/sunologo.png" width="50"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Quem Somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Serviços</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#cardapio">Cardapio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#modalLogin" style="color: red;cursor:pointer;">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#modalRegister" style="color: red;cursor:pointer;">Registrar</a>
+            </li>
+
+          </ul>
+        </div>
       </div>
-      <div class="modal-body">
-      	<h5 class="modal-body">Cotações: Casa: {{timeCasa}} X Fora: {{timeFora}}</h5>
-        <table class="table table-striped">
-        	<tr>
-        		<th>Aposta Descrição</th>
-        		<th>Taxa</th>
-        	</tr>
-        	<tr v-for="tipoAposta in tipoApostas">
-        		<template v-if="tipoAposta.TIPO_APOSTA_DESC === 'Casa'">
-	        		<td>{{tipoAposta.TIPO_APOSTA_DESC}}</td>
-	        		<td>{{tipoAposta.TAXA}}</td>
-        		</template>
-        	</tr>
-        </table>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <!-- <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Your Favorite Source of Free Bootstrap Themes</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+          </div>
+        </div>
+      </div> -->
+    </header>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Delivery de Comida Oriental</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">Estamos iniciando nossos serviçõs no ano de 2018, prezando pela qualidade e excelencia nos pratos e atendimento...</p>
+
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Serviços</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
+              <h3 class="mb-3">Gourmet</h3>
+              <p class="text-muted mb-0">Nossos pratos são feitos em um cozinha de alta qualidade.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-motorcycle text-primary mb-3 sr-icon-1"></i>
+              <h3 class="mb-3">Delivery</h3>
+              <p class="text-muted mb-0">Entregamos nas cidades de Petrolina e Juazeiro. <a data-toggle="modal" data-target="#modalEntrega" style="color:#f05f40;cursor:pointer;">Taxas e Bairros</a>.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-phone-square text-primary mb-3 sr-icon-3"></i>
+              <h3 class="mb-3">Telefone</h3>
+              <p class="text-muted mb-0">ligue para (87) 9.9999-9999, e teremos o prazer em preparar seu pedido.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-at text-primary mb-3 sr-icon-4"></i>
+              <h3 class="mb-3">Site</h3>
+              <p class="text-muted mb-0"><a data-toggle="modal" data-target="#modalRegister" style="color:#f05f40;cursor:pointer;">Registre-se</a> no site e faça seu pedido com uma maior comodidade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="cardapio">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/1.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/1.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Japonesa
+                  </div>
+                  <div class="project-name">
+                    Hot Holl
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/2.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/2.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Japonesa
+                  </div>
+                  <div class="project-name">
+                    Barca Variada
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/3.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/3.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Japonesa
+                  </div>
+                  <div class="project-name">
+                    Variada
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/4.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/4.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Japonesa
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/5.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/5.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/cadapio/6.jpg">
+              <img class="img-fluid" src="img/portfolio/cadapio/6.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Category
+                  </div>
+                  <div class="project-name">
+                    Project Name
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark text-white">
+      <div class="container text-center">
+        <h2 class="mb-4">Bairros e Valores de Entrega</h2>
+        <a class="btn btn-light btn-xl sr-button" data-toggle="modal" data-target="#modalEntrega" style="color:#f05f40;cursor:pointer;">Visualizar</a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Entre em Contato!</h2>
+            <hr class="my-4">
+            <p class="mb-5">Para fazer seu pedido pelo telefone ou mandar um feedback para nós</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 ml-auto text-center">
+            <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
+            <p>(87) 9.9999-9999</p>
+          </div>
+          <div class="col-lg-3 mr-auto text-center">
+            <i class="fas fa-envelope fa-3x mb-3 sr-contact-1"></i>
+            <p>
+              <a href="mailto:your-email@your-domain.com">feedback@gmail.com</a>
+            </p>
+          </div>
+          <div class="col-lg-3 mr-auto text-center">
+              <i class="fab fa-instagram fa-3x mb-3 sr-contact-2"></i>
+              <p style="color:#6b0695;">@Sunomoki</p>
+          </div>
+          <div class="col-lg-3 mr-auto text-center">
+              <i class="fab fa-facebook-square fa-3x mb-3 sr-contact-2"></i>
+              <p style="color:#3b5998;">Facebook</p></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="bg-dark text-white" style="padding:20px;">
+      <div class="text-center">
+        <h6>Todos os direitos reservados &copy; M.I Sistemas 2018 </h6>
       </div>
     </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Campeonato: {{campeonato}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	<h5 class="modal-body">Cotações: Casa: {{timeCasa}} X Fora: {{timeFora}}</h5>
-        <table class="table table-striped">
-        	<tr>
-        		<th>Aposta Descrição</th>
-        		<th>Taxa</th>
-        	</tr>
-        	<tr v-for="tipoAposta in tipoApostas">
 
-	        		<td>{{tipoAposta.TIPO_APOSTA_DESC}}</td>
-	        		<td>{{tipoAposta.TAXA}}</td>
 
-        	</tr>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="mySmallModalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+          <form action="home-cliente.html" method="POST">
+             <div class="form-group">
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+              </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <!-- Modal Registrar -->
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mySmallModalLabel">Registrar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+          <form action="" method="GET">
+            <div class="form-group">
+               <input type="text" name="telefone" class="form-control" placeholder="8799999999" maxlength="11">
+            </div>
+            <div class="form-group">
+               <input type="email" name="email" class="form-control"  placeholder="Email">
+             </div>
+             <div class="form-group">
+               <input type="password" name="password" class="form-control" placeholder="Senha">
+             </div>
+            <div class="form-group">
+               <input type="text" name="nome" class="form-control" placeholder="Nome Completo">
+            </div>
+             <div class="form-group">
+                <input type="text" name="endereco" class="form-control" placeholder="Rua São José, n 352">
+             </div>
+             <div class="form-group">
+                <a data-toggle="modal" data-target="#modalEntrega" style="color:#f05f40;cursor:pointer;">Verifique se Seu Bairro está na área de entrega</a>
+                <input type="text" name="bairro" class="form-control" placeholder="Bairro">
+             </div>
+             <div class="form-group">
+               <select class="form-control" name="cidade">
+                 <option value="petrolina">Petrolina</option>
+                 <option value="juazeiro">Juazeiro</option>
+               </select>
+             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
+    <!-- Modal Locais De Entrega -->
+    <div class="modal fade" id="modalEntrega" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mySmallModalLabel">Locais de Entrega</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <h6 style="color:#f05f40">O endereço de entrega pode ser modificado na confirmação do pedido</h6>
+            <table class="table table-striped">
+              <tr>
+                <th>Bairros</th>
+                <th>Entrega</th>
+              </tr>
+              <tr>
+                <td>Centro</td>
+                <td>Free</td>
+              </tr>
+              <tr>
+                <td>Areia Branca</td>
+                <td>Free</td>
+              </tr>
+              <tr>
+                <td>Henrique Leite</td>
+                <td>R$ 5,00</td>
+              </tr>
+              <tr>
+                <td>Cohab Massangano</td>
+                <td>R$ 7,00</td>
+              </tr>
+            </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" class="close" data-dismiss="modal" aria-label="Close">Fecha</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-<script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-var app = new Vue({
-	el: "#app",
-	data () {
-    return {
-      jogos: null,
-      cotacoes: [],
-      tipoApostas: null,
-      campeonato: null,
-      timeCasa:null,
-      timeFora:null
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
 
-    }
-  },
-  mounted () {
-  	var self = this;
-  	axios.get('http://montecarlos.no-ip.info:2610/gettable/SP_BET_JOGOS/1')
-	  .then(function (response) {
-	   	self.jogos = response.data;
-	  })
-	  .catch(function (error) {
-	    console.log(error);
-	  });
-	// axios.get('http://montecarlos.no-ip.info:2610//gettable/SP_BET_GET_APOSTAS/1')
-	//   .then(function (response) {
-	//    	self.tipoApostas = response.data;
-	//   })
-	//   .catch(function (error) {
-	//     console.log(error);
-	//   });
-   },
-   filters: {
-   	 dataFilter (data){
-   	 	return data.split('-').reverse().join('/');
-   	 },
-   	 horaFilter (data){
-   	 	var hora = data.split(':');
-   	 	return hora[0]+':'+hora[1];
-   	 }
-   },
-   methods:{
+  </body>
 
-    contacaoApostaMcEsportes: function(valor,casa,fora,campeonato){
-      this.timeCasa = casa;
-      this.timeFora = fora;
-      this.campeonato = campeonato;
-      var self = this;
-      console.log(casa+' '+fora);
-      axios.get('http://montecarlos.no-ip.info:2610/gettable/SP_GET_COTACAO_JOGO_BY_ID/'+valor)
-		  .then(function (response) {
-		   	self.tipoApostas = response.data;
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		  });
-    },
-
-    cotacaoApostaFutBand: function(){
-
-	  	axios.get('http://www.futband.online/web/principal/prematch')
-		  .then(function (response) {
-		   	console.log(response.data);
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		  });
-	},
-
-  },
-
-})
-
-</script>
-</body>
 </html>
