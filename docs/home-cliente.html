@@ -148,7 +148,7 @@
     </div>
 
     <!-- Modal Carrinho -->
-    <div class="modal fade" id="modalCarrinho" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="modalCarrinho" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -157,41 +157,46 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="background:#212529;">
 
-            <div class="card text-center card-top">
+            <div class="card text-center card-top " >
               <div class="card-header">
                 Pedido numero #154488
               </div>
               <div class="card-body">
 
                 <p class="card-text">
-                  <table class="table ">
+                  <table class="table">
                     <tr>
                       <th>#</th>
                       <th>Item</th>
+                      <th>Qtd</th>
                       <th>Preço</th>
                     </tr>
                     <tr>
                       <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/1.jpg" width="70"></td>
                       <td>Hot Holl</td>
+                      <td><input type="number" class="form-control form-control col-2 offset-5" name="" value="2"></td>
                       <td>R$ 10,00</td>
                     </tr>
                     <tr>
                       <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/2.jpg" width="70"></td>
                       <td>Barca</td>
+                      <td><input type="number" class="form-control form-control col-2 offset-5" name="" value="1"></td>
                       <td>R$ 50,00</td>
                     </tr>
                     <tr>
                       <td><img class="img-thumbnail rounded" src="img/portfolio/cadapio/3.jpg" width="70"></td>
                       <td>Peça</td>
+                      <td><input type="number" class="form-control col-2 offset-5" name="" value="2"></td>
                       <td>R$ 50,00</td>
                     </tr>
                   </table>
                 </p>
-                <div class="col-6 col-sm-12">
+                
                   <table class="float-right">
                     <tr>
+                      <td rowspan="2"><a href="#">Mudar Endereço de Entrega</a></td>
                       <th>Frete</th>
                       <td>R$ 9,00</td>
                     </tr>
@@ -200,7 +205,7 @@
                       <td>R$ 119,00</td>
                     </tr>
                   </table>
-                </div>
+                
               </div>
               <div class="card-footer text-muted">
                 Itens adicionados no Carrinho
@@ -210,7 +215,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Finalizar Pedido</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
           </div>
         </div>
       </div>
