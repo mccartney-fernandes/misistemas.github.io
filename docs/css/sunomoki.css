@@ -19,3 +19,8 @@
 .hr-suno{
   max-width: 100% !important;
 }
+
+.text-table-pedido tr>td{
+	font-size: 12px;
+
+}
