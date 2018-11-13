@@ -1,0 +1,28 @@
+.nav-link{
+    font-size: 21px !important;
+	color:#fff !important;    
+}
+
+.nav-link:hover{
+	color:black !important;
+	background: #f7f3f3f5; 
+	border-radius: 30px;   
+}
+
+.figure-sunomonki{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.card-cozinha-sunomonki{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.img2-sunomonki{
+	margin-left: -25px;
+}
+
+.text-branco{
+	color:#ffff;
+}
