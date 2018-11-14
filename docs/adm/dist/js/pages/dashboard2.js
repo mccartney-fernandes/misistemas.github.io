@@ -17,27 +17,37 @@ $(function () {
   var salesChart       = new Chart(salesChartCanvas);
 
   var salesChartData = {
-    labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels  : ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov'],
     datasets: [
       {
-        label               : 'Electronics',
+        label               : 'Temaki Polvo',
         fillColor           : 'rgb(210, 214, 222)',
         strokeColor         : 'rgb(210, 214, 222)',
         pointColor          : 'rgb(210, 214, 222)',
         pointStrokeColor    : '#c1c7d1',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgb(220,220,220)',
-        data                : [65, 59, 80, 81, 56, 55, 40]
+        data                : [65, 59, 80, 81, 56, 55, 40, 81, 56, 55, 40]
       },
       {
-        label               : 'Digital Goods',
+        label               : 'Combinado 1',
         fillColor           : 'rgba(60,141,188,0.9)',
         strokeColor         : 'rgba(60,141,188,0.8)',
         pointColor          : '#3b8bba',
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data                : [28, 48, 40, 19, 86, 27, 90]
+        data                : [28, 48, 40, 19, 86, 27, 90, 19, 86, 27, 90]
+      },
+      {
+        label               : 'Combinado 2',
+        fillColor           : 'rgba(57,138,4,0.9)',
+        strokeColor         : 'rgba(57,138,4,0.8)',
+        pointColor          : '#398A04',
+        pointStrokeColor    : 'rgba(60,141,188,1)',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgba(60,141,188,1)',
+        data                : [25, 37, 49, 21, 97, 22, 88, 21, 97, 22, 88]
       }
     ]
   };
